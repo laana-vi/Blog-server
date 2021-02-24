@@ -1,8 +1,8 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CustomUserSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
+from .serializers import CustomUserSerializer, UserSerializer
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import CustomUser
 
 
@@ -23,3 +23,19 @@ class UsersList(generics.ListCreateAPIView):
     permission_classes = [AllowAny]
     queryset = CustomUser.userobjects.all()
     serializer_class = CustomUserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+
+class EditUser(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+
+class DeleteUser(generics.RetrieveDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer

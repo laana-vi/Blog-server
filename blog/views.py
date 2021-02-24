@@ -59,3 +59,5 @@ class DeletePost(generics.RetrieveDestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+    

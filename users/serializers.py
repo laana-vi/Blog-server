@@ -24,3 +24,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'user_name', 'first_name', 'last_name', 'date_of_birth', 'id')
+
+class UserPassword(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('password')
