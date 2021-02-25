@@ -25,6 +25,7 @@ class Post(models.Model):
 
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='posts', default='posts/default.png')
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='timestamp')
     timestamp = models.DateTimeField(default=timezone.now)
