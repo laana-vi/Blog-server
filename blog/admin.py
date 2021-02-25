@@ -3,7 +3,7 @@ from . import models
 
 @admin.register(models.Post)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('title', 'id', 'status', 'slug', 'author', 'timestamp')
+    list_display = ('title', 'id', 'slug', 'author', 'timestamp')
     prepopulated_fields = {'slug': ('title',), }
 
 

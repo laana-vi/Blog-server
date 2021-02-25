@@ -16,12 +16,7 @@ class Post(models.Model):
 
     class PostOjects(models.Manager):
         def get_queryset(self):
-            return super().get_queryset() .filter(status='published')
-
-    options = (
-        ("draft", "Draft"),
-        ("published", "Published")
-    )
+            return super().get_queryset()
 
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=250)
@@ -33,8 +28,7 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL, blank=True, related_name='post_likes')
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="blog_posts")
-    status = models.CharField(
-        max_length=10, choices=options, default="published")
+   
 
     objects = models.Manager()
     postobjects = PostOjects()
