@@ -26,16 +26,16 @@ class UsersList(generics.ListCreateAPIView):
 
 
 class UserDetail(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 class EditUser(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 class DeleteUser(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer

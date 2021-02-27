@@ -1,4 +1,4 @@
-from .views import PostList, CategoriesList, PostDetail, CreatePost, AdminPostDetail, EditPost, DeletePost
+from .views import PostList, CategoriesList, PostDetail, CreatePost, AdminPostDetail, EditPost, DeletePost, EditLikes
 from django.urls import path
 
 app_name="blog"
@@ -12,4 +12,5 @@ urlpatterns = [
     path('admin/edit/postdetail/<int:pk>/', AdminPostDetail.as_view(), name='admindetailpost'),
     path('admin/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
     path('admin/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
+    path('edit/likes/<str:pk>/', EditLikes.as_view(), name='editpost'),
 ]

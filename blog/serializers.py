@@ -11,3 +11,8 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields=('id', "name")
+
+class PostLikesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('likes',)

@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, status
 from blog.models import Post, Category
-from .serializers import PostSerializer, CategorySerializer
+from .serializers import PostSerializer, CategorySerializer, PostLikesSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -43,12 +43,14 @@ class CategoriesList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+
 class CreatePost(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
-        serializer = PostSerializer(data=request.data)
+        serializer = PostSerializer(data=request.data, partial=True)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -57,18 +59,28 @@ class CreatePost(APIView):
 
 
 class AdminPostDetail(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
 
 class EditPost(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class EditLikes(generics.UpdateAPIView):
+    permission_classes = [AllowAny]
+    queryset = Post.objects.all()
+    serializer_class = PostLikesSerializer
+
+    def get_object(self, queryset=None, **kwargs):
+        item = self.kwargs.get('pk')
+        return get_object_or_404(Post, slug=item)
+
 
 class DeletePost(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
-    
