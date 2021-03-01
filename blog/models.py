@@ -20,7 +20,7 @@ class Post(models.Model):
 
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='posts', default='posts/default.png')
+    image = models.ImageField(upload_to='posts', default='https://res.cloudinary.com/dpj7zvqzs/image/upload/v1614562523/media/posts/default_dhjiv8.png')
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='timestamp')
     timestamp = models.DateTimeField(default=timezone.now)
