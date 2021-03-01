@@ -1,0 +1,6 @@
+SECRET_KEY = 'rg3i5zu2*9v!$(67!#$ox*$91k)o9p5!p=^z!308hh%^v%=y^n'
+EMAIL_HOST_USER = 'ageeksviewblog@gmail.com'
+EMAIL_HOST_PASSWORD = 'onpvpjfhtrpcrtpi'
+CLOUD_NAME = 'dpj7zvqzs'
+API_KEY = '328378167972793'
+API_SECRET = 'NZlOFp-slRTet4Ip920cnjrvawc'

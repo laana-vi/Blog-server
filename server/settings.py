@@ -14,6 +14,8 @@ from pathlib import Path
 from datetime import timedelta
 from .secrets import SECRET_KEY, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, CLOUD_NAME, API_KEY, API_SECRET
 import os
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -85,11 +87,8 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+ DATABASES = {
+    'default': dj_database_url.config()
 }
 
 
@@ -137,10 +136,7 @@ APPEND_SLASH = True
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://192.168.0.18:3000"
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -190,3 +186,5 @@ CLOUDINARY_STORAGE = {
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
 }
+
+django_heroku.settings(locals())
