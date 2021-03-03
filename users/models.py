@@ -77,9 +77,9 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # title:
         "Password Reset for A Geeks View Blog",
         # message:
-        "Please copy and paste token into your browser. Token: "+ reset_password_token.key,
+        "Somebody (hopefully you) sent a request to change your password. If this was you please copy and paste the token into your browser. If this was not you, ingore this message. Token: "+ reset_password_token.key,
         # from:
-        "ageeksviewblog@gmail.com",
+        "noreplay@bglogger.com",
         # to:
         [reset_password_token.user.email]
     )
